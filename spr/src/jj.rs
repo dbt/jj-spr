@@ -343,7 +343,7 @@ impl Jujutsu {
         Ok(())
     }
 
-    fn prepare_commit(&self, config: &Config, commit_oid: Oid) -> Result<PreparedCommit> {
+    pub fn prepare_commit(&self, config: &Config, commit_oid: Oid) -> Result<PreparedCommit> {
         let commit = self.git_repo.find_commit(commit_oid)?;
         let short_id = format!("{:.7}", commit_oid);
 
@@ -391,7 +391,7 @@ impl Jujutsu {
         })
     }
 
-    fn get_change_id_for_commit(&self, commit_oid: Oid) -> Result<String> {
+    pub fn get_change_id_for_commit(&self, commit_oid: Oid) -> Result<String> {
         // Get the change ID for a given commit OID
         let output = self.run_captured_with_args([
             "log",
